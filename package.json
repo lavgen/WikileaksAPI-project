@@ -1,0 +1,19 @@
+{
+  "name": "wikileaks_api",
+  "version": "1.0.0",
+  "description": "API for Wikileaks files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lal Avgen",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "hogan-express": "^0.5.2",
+    "lodash": "^4.16.2",
+    "mongodb": "^2.2.10",
+    "mongoose": "^4.6.1"
+  }
+}
