@@ -14,7 +14,7 @@ country= ‘country name’ ex: country=Turkey
 leakgroup= ‘leakgroup name’ ex: leakgroup=Global Intelligence Files
 
 **Specify how many links to get back (count) :**
-*if you don't specify count you will get all links under that leakgroup*
+*if you don't specify count you will get 50 links under that leakgroup*
            
 count= ‘number’ ex:count=15
 
