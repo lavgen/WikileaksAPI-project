@@ -2,6 +2,27 @@
 
 This is the WikileaksAPI. You can query data Wikileaks has for countries. This data consists of links and name of the link divided according to the group that leaked that link. Each country consists of 20 leakgroups and those leak groups consist links and names.   
 
+**To begin: You have to specify a country name, or else you won’t get any data back.**
+
+**Specify a country name :**
+
+country= ‘country name’ ex: country=Turkey
+
+**Specify a leak group :**
+*If you don't specify a leakgroup you will get all the data from all leakgroups*
+
+leakgroup= ‘leakgroup name’ ex: leakgroup=Global Intelligence Files
+
+**Specify how many links to get back (count) :**
+*if you don't specify count you will get all links under that leakgroup*
+           
+count= ‘number’ ex:count=15
+
+**full example of all queries together: “ url/api?country=Turkey&leakgroup=Global Intelligence Files&count=20 ”**
+
+
+###Example of What You Can Do With This API:###
+wikileaksapi.com 
 You can query all the data on one country, or specify the leakgroup that leaked the spesific files in a country. 
 There are 20 leak groups you can choose.       
  These are:           
@@ -25,24 +46,3 @@ There are 20 leak groups you can choose.
 19."Sony Emails",           
 20."Non-collection Publications"          
 
-**To begin: You have to specify a country name, or else you won’t get any data back.**
-
-**Specify a country name :**
-
-country= ‘country name’ ex: country=Turkey
-
-**Specify a leak group :**
-*If you don't specify a leakgroup you will get all the data from all leakgroups*
-
-leakgroup= ‘leakgroup name’ ex: leakgroup=Global Intelligence Files
-
-**Specify how many links to get back (count) :**
-*if you don't specify count you will get all links under that leakgroup*
-           
-count= ‘number’ ex:count=15
-
-**full example: “ url/api?country=Turkey&leakgroup=Global Intelligence Files&count=20 ”**
-
-
-###Example:###
-wikileaksapi.com 
