@@ -23,6 +23,10 @@ count= ‘number’ ex:count=15
 
 ###Example of What You Can Do With This API:###
 wikileaksapi.com 
+
+
+
+
 You can query all the data on one country, or specify the leakgroup that leaked the spesific files in a country. 
 There are 20 leak groups you can choose.       
  These are:           
