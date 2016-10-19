@@ -2,8 +2,11 @@
 
 This is the WikileaksAPI. You can query data Wikileaks has for countries. This data consists of links and name of the link divided according to the group that leaked that link. Each country consists of 20 leakgroups and those leak groups consist links and names.   
 
-**To begin: You have to specify a country name, or else you won’t get any data back.**
-
+**You can't use this API without specifying a country.**
+**If you only specify a country, you will get all data all leakgroups have on a country**
+**If you specify country and a leakgroup, you will get back first 50 links by default**
+to get all the data in a leakgroup write count=all (??)
+**If you don't specify a leakgroup but only country and count, you will get that number of links from first leakgroup which is "Global Intelligence Files"**
 **Specify a country name :**
 
 country= ‘country name’ ex: country=Turkey
