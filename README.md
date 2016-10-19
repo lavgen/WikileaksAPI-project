@@ -22,7 +22,7 @@ count= ‘number’ ex:count=15
 
 
 ###Example of What You Can Do With This API:###
-wikileaksapi.com 
+  [example project](www.wikileaksapi.com).
 
 
 
