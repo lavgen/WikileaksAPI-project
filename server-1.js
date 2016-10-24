@@ -59,7 +59,7 @@ server.get('/api',function(req,res){
 				if( typeof req.query.count !== "undefined" ){
 					// only push that many to obj.leaks which is i
 					for (var i = req.query.leakgroup.length-1; i >= 0; i--) {
-						//starts index=0+count and the last link sent is the first link of array
+						//right now, if count is 50, will start from 50th obj and count to beginning
 							obj.leaks.push( data[req.query.leakgroup][i] );
 							console.log(i);
 					}
