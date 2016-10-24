@@ -51,21 +51,47 @@ server.get('/api',function(req,res){
 	//if they have specified a country;
 	else {
 			//if no leak group specified give all data
-			Countries.findOne({country:req.query.country},function(err,data){
-				
+		Countries.findOne({country:req.query.country},function(err,data){
+			revdata = data.reverse
 			//if a leak group is specified;
 			if( typeof req.query.leakgroup !== "undefined" ){
-				//only send back that leakgroup data
-				obj.leaks = data[req.query.leakgroup];
-			}// if leak group isn't specified
-			else {
+				//and count is specified
+				if( typeof req.query.count !== "undefined" ){
+					// only push that many to obj.leaks which is i
+					for (var i = req.query.leakgroup.length-1; i >= 0; i--) {
+						//starts from the end of the object array, but adds so many 'nulls'
+						//at the beginning of the array
+							obj.leaks.push( data[req.query.leakgroup][i] );
+							console.log(i);
+					}
+				//if count is not specified but leakgroup is specified
+				} else if (typeof req.query.count == "undefined" &&  typeof req.query.leakgroup !== "undefined" ) {
+					
+					// push all links from that leakgroup
+					obj.leaks = data[req.query.leakgroup];
+				}	//if leeakgroup is specified and count is all
+					
+			}
+			//if leakgroup isn't specified but count is,show that many links from first leakgroup
+			else if(typeof req.query.leakgroup == "undefined" && typeof req.query.count !== "undefined") {
+					
+					for (var i = data["Global Intelligence Files"].length-1; i >= 0; i--) {
+						obj.leaks.push( data["Global Intelligence Files"][i] );
+						// console.log(["Global Intelligence Files"].length);
+					}
+			}
+			else{ //if leakgroup isn't specified,show all data!!
+
 				for( i in data ){ //this is a loop to loop only arrays in our document
 					if( data[i] instanceof Array ){
-
+						//data is ordered in leakgroups, not dates
+						//reverse order of data
+						// rev= data[i].reverse();
 						obj.leaks.push(data[i]);
 					}
 				}
 			}
+		
 			res.send( obj );
 
 		});
