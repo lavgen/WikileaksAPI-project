@@ -59,8 +59,7 @@ server.get('/api',function(req,res){
 				if( typeof req.query.count !== "undefined" ){
 					// only push that many to obj.leaks which is i
 					for (var i = req.query.leakgroup.length-1; i >= 0; i--) {
-						//starts from the end of the object array, but adds so many 'nulls'
-						//at the beginning of the array
+						//starts index=0+count and the last link sent is the first link of array
 							obj.leaks.push( data[req.query.leakgroup][i] );
 							console.log(i);
 					}
@@ -74,7 +73,7 @@ server.get('/api',function(req,res){
 			}
 			//if leakgroup isn't specified but count is,show that many links from first leakgroup
 			else if(typeof req.query.leakgroup == "undefined" && typeof req.query.count !== "undefined") {
-					
+					//right now array starts from the most recent link but count doesn't do anything
 					for (var i = data["Global Intelligence Files"].length-1; i >= 0; i--) {
 						obj.leaks.push( data["Global Intelligence Files"][i] );
 						// console.log(["Global Intelligence Files"].length);
