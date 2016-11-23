@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="Author" content="Lal Avgen">
+		<meta name="Description" content="Example Website for Wikileaks Api use" >	
+		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="stylesheet/styles.css">
+		<link rel="stylesheet" href="js/leaflet/leaflet.css"/>
+		<link rel="stylesheet" href="font/Intro/stylesheet.css" />
+		
+
+	</head>
+	<style>
+	@font-face {
+	  font-family: 'Bentham';
+	  font-style: normal;
+	  src: url(font/bentham-webfont.woff) format('woff');
+	}
+	#demo{
+		display: none;
+	    font-family: Arial;
+		text-align: center;
+		width: 22%;
+		height: 480px;
+		background: rgba(64 , 10 , 52 ,0.7);
+		padding: 0px;
+		margin-bottom: 8px;
+		cursor: pointer;
+		z-index: 10000;
+		top: 15% ;
+		position: absolute;
+	}
+
+	#demo a {
+		color: white;
+		font-family: 'Bentham';
+		font-size: 18px;
+	}
+	#demo a:hover {
+		color: #F2D5CF;
+	}
+	#leaks {
+
+	    position: absolute;
+	    width: 50%;
+	    height: 300px;
+	    /* margin-left: 24%; */
+	    overflow-y: scroll;
+	    top: 20%;
+	    left: 24%;
+	    z-index: 10000;
+	    background-color: rgba(121,83,112,0.9);
+	    display: none;
+	}
+	#leaks a{
+		color: white;
+	    padding-left: 9px;
+	    padding-right: 5px;
+	    word-wrap: break-word;
+	    margin-left: 5px;
+	    font-family: monospace;
+	    font-size: 16px;
+	    display: list-item;
+	}
+
+	#leaksList{
+		margin-top: 10px;
+	}
+	#leaklayer{
+		height: 80%;
+
+	}
+		
+		/*.leakslayer{
+			z-index: 10000;
+			position: absolute;
+			top: 5%;
+			width: 100%;
+			height: 500px;
+			overflow-y: scroll;
+			display: none;
+		
+		}
+*/
+		#mapid { 
+			height: 90vh;
+			top: 55px;
+			border: 0.5px solid;
+
+		}
+		.pswp__zoom-wrap {
+		  will-change: auto !important;
+		  -webkit-backface-visibility: visible !important;
+		}
+		ul.topnav {
+		    list-style-type: none;
+		    margin: 0;
+		    padding: 0;
+		    overflow: hidden;
+		    background: rgba(64 , 10 , 52 ,0.7);
+		}
+
+		/* Float the list items side by side */
+		ul.topnav li {
+			float: left;
+
+		}
+		ul.topnav{
+			position: fixed;
+			width: 100%;
+			z-index: 30000;
+		}
+		
+		/* Style the links inside the list items */
+		ul.topnav li a {
+			font-family:  'intro_inlineregular';
+		    display: inline-block;
+		    color: #f2f2f2;
+		    text-align: center;
+		    padding: 14px 16px;
+		    text-decoration: none;
+		    transition: 0.3s;
+		    font-size: 17px;
+
+		}
+		#about{
+			font-size: 2em;
+			font-family: monospace;
+			top: 110%;
+			margin-top: 25%;
+			width: 80%;
+			left: 10%;
+			position: relative;
+
+		}
+		#documentation{
+			font-family: monospace;
+			margin-top: 30%;
+			width: 80%;
+			margin-left: 10%;
+			margin-bottom: 20%;
+		}
+
+		#line{
+			margin-top: 10%;
+			margin-bottom: 10%;
+			border-bottom: 3.5px solid black;
+		}
+		/* Change background color of links on hover */
+		ul.topnav li a:hover {background-color: black;}
+
+		 Hide the list item that contains the link that should open and close the topnav on small screens 
+		ul.topnav li.icon {display: none;}
+
+	</style>
+	<body>
+		<ul class="topnav" id="myTopnav">
+		  <li><a href="#about">About</a></li>
+		  <li><a href="#documentation">Documentation</a></li>
+		  <li><a href="#">Map</a></li>
+		</ul>
+		<div id="demo">
+			<div id="closeModal" style="background-color:white; text-align:center; margin-left:90%; margin-top:2%; width:20px;">&#10005;</div>
+			<div id="leaklayer" style="color:white;">loading</div>
+		</div>
+		<div id="leaks">
+			<div id="closelist" style="background-color:white;text-align:center; margin-left:90%; margin-top:2%; width:20px;  ">&#10005;</div>
+			<div id="leaksList" style="color:white;">loading</div>
+		</div>
+		<!-- <a style="display: none;"href= SOMEHREFDIRECTINGTOLEAK id="leakslayer"><br></a> -->
+		 <div id="mapid"></div>
+		<div id="about"> <br><br><br><h1>ABOUT<br></h1>
+		<div style="margin-top:15%;">This website is an example for how to use the Wikileaks API. You can click on the countries on the map and select from a leakgroup from the list that appears. All links you see come from wikileaks and will take you to those spesific files. This is a custom build API that intends to allow easier access to wikileaks data. <br> <div style=" text-align:right; font-size:0.5em;">by Lal Avgen, Nov,1026</div></div>
+		</div>
+		<div id="line"></div>
+		<div id="documentation">
+			<br><br><br><br><br> 
+			<h1>DOCUMENTATION</h1>
+			This is the WikileaksAPI. You can query the data Wikileaks has for countries. This data consists of links and name of the link divided according to the group that leaked that link. Each country consists of maximum 20 leakgroups and those leak groups consist links and names.
+			<h2>To Begin:</h2>
+			  <ul>
+			  	<li>
+			  	Specify a <b>country</b>, you can't use this API without choosing a country to query from!
+				how to access: http://localhost:4000/api?country=<i>name</i>
+				</li>
+				<li>
+					After choosing a country, 
+					<br><Br>1-You can choose a leakgroup (country=<i>name</i>&leakgroup=<i>name</i>) , 
+					<br><br>2-And/or count for how many links you want to get back (country=<i>name</i>&leakgroup=<i>name</i>&count=<i>number</i>)
+				<br><br>
+				**If you only specify a country and no count or leakgroup, you will get all data all leakgroups have on that country.<br><br>
+				**If you only specify count and a country, you will get however count is from all leakgroups from that country.	<br><br>
+				</li>
+				<li>
+
+				<b>full example of all queries together: “ url/api?country=Turkey&leakgroup=Global Intelligence Files&count=20 ”	 </b>
+				</li>
+				<br><br>
+			  	<b>List Of Leakgroups to choose from: </b><br><br>
+			  	<ol>
+			  		<li>"Global Intelligence Files",
+			  		<li>"Plusd",</li>
+			  		<li>"Cablegate",</li>
+			  		<li>"Kissinger Cables",</li>
+			  		<li>"Carter Cables2",</li>
+			  		<li>"Afghanistan War Logs" ,</li>
+			  		<li>"Carter Cables",</li>
+			  		<li>"US Military Equipment in Iraq",</li>
+					<li>"Clinton Emails", </li>
+					<li>"Syria Files",</li>
+					<li>"The Guantanamo Files",</li>
+					<li>"Hacking Team",</li>
+					<li>"Hacking Team Emails",</li>
+					<li>"Sony",</li>
+					<li>"Secret Congressional Reports",</li>
+					<li>"Sony Documents",</li>
+					<li>"US Military Equipment in Afghanistan",</li>
+					<li>"DNC Email Archive",</li>
+					<li>"Sony Emails",</li>
+					<li>"Non-collection Publications"</li>
+			  	</ol>
+			</ul>
+
+		</div>
+		<script src="Dictionary/nameDict.js"></script> 
+		<script src="js/leaflet/leaflet.js"></script> 
+		<script src="js/jquery/jquery-3.1.1.min.js"></script> 
+		<script>
+		//variable for all leaknames, can iterate with this to get the api
+		var leakNames = [
+		    "Global Intelligence Files",
+		    "Plusd",
+		    "Cablegate",
+		    "Kissinger Cables",
+		    "Carter Cables2",
+		    "Afghanistan War Logs",
+		    "Carter Cables",
+		    "US Military Equipment in Iraq",
+		    "Clinton Emails",
+		    "Syria Files",
+		    "The Guantanamo Files",
+		    "Hacking Team",
+		    "Hacking Team Emails",
+		    "Sony",
+		    "Secret Congressional Reports",
+		    "Sony Documents",
+		    "US Military Equipment in Afghanistan",
+		    "DNC Email Archive",
+		    "Sony Emails",
+		    "Non-collection Publications"
+		];
+//united states is in my file other one is united states of america
+		console.log(leakNames.length);
+		//loop through an array
+		// for (var c in leakNames) {
+		// 	//create new element a tag
+		//     var newElement = document.createElement('a');
+		//     //put href in that element 
+		//     newElement.href =  "http://localhost:4000/api?country=China&leakgroup="+leakNames[c];
+
+		//     //create id and class for element
+		//     newElement.id = leakNames[c]; newElement.className = "leakslayer";
+		//     //add all leaknames to new element but with linebreak
+		//     newElement.innerHTML = leakNames[c]+ '<br />';
+		//     //push elements into demo div
+		//     document.getElementById('demo').appendChild(newElement );
+		// }
+		
+
+		 	var map = L.map( 'mapid', {
+			    center: [20.0, 5.0],
+			    minZoom: 2,
+			    zoom: 2
+			});
+		 	L.tileLayer( 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
+		 	{attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    		 subdomains: ['a','b','c']
+			}).addTo( map );
+		 	//layers
+		 	map.createPane('labels');
+		 	//so that the blue layer is on top 
+		 	map.getPane('labels').style.zIndex = 650;
+		 	//to make the countries clickable - for more info search css pointer events
+		 	map.getPane('labels').style.pointerEvents = 'none';
+			var positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+			        attribution: '©OpenStreetMap, ©CartoDB'
+			}).addTo(map);
+
+			var positronLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
+			        attribution: '©OpenStreetMap, ©CartoDB',
+			        pane: 'labels'
+			}).addTo(map);
+			map.scrollWheelZoom.disable();
+			
+
+  
+			//request content of a file
+			var req = new XMLHttpRequest();
+			//this is with header that has the allow cross origin
+			req.open("GET","http://lalavgen.com:4000/geoJson" , true);
+			//once page loads do this
+			req.addEventListener("load", function(){
+				var data = JSON.parse(req.responseText );
+				addDataToMap(data, map);
+
+			});
+			req.send(null);
+
+			
+			// console.log(nameDict);
+			
+
+			//openModal
+			function showModal(a){
+				var leaklayer = document.getElementById('leaklayer');
+				//when modal is first created show loading text
+				leaklayer.innerHTML = "loading";
+				//get id of a tag which is name of the countries
+				var name = a.getAttribute('id');
+				//convert name in tag to name inside database through nameDict module
+				//we are doing this so every country name in geojson is same with country names in database
+				// assign rightName property of selected country as name when querying with api url
+				var correctName = nameDict[name].rightName ; 
+				console.log(correctName);
+				// if (a.getAttribute('id') == "United States of America" ) {
+				// 	name = "United States";
+				// };
+				var demo = document.getElementById('demo');
+				// console.log(name);
+				demo.style.display = "block";
+				var countryReq = new XMLHttpRequest();
+				countryReq.open("GET","http://wiki.lalavgen.com/api?country="+correctName , true);
+
+				countryReq.addEventListener("load", function(){
+					
+					var data = JSON.parse(countryReq.responseText );
+					//data.leaks is the object with leaks
+					//i is the key of the obj
+					//get rid of loading text and show leaks
+					leaklayer.innerHTML = "";
+
+					for(i in data.leaks){
+						//data.leaks is all the lakgroups (i.e Global Int Files,PlusD etc)
+						if (data.leaks[i].length > 0 ) {
+							//create an a tag for each leakgroup name
+							var newElement = document.createElement('a');
+							//add index as the link, index is the name (ie Global Intelligence Files)
+							newElement.innerHTML = [i] + '<br />';
+							//push elements into demo div
+							leaklayer.appendChild(newElement );
+							//let comes from ES6, 
+							let leakName = i;
+							//loop through leakgroups
+							newElement.onclick = function(){
+								document.getElementById('leaks').style.display = "block";
+								//get rid of what is inside list div
+								document.getElementById('leaksList').innerHTML = "";
+								
+								console.log(i , leakName);
+								for (var k = 0; k < data.leaks[leakName].length; k++) {
+									//deleted every [0] before [k]
+									//create a tag for name of links
+									var leak = document.createElement('a');
+									//add name of link to a title
+									leak.innerHTML = data.leaks[leakName][k].name  + '<br />'+ '<br />';
+									//add href in db to href of a tag
+									leak.href = data.leaks[leakName][k].link ;
+									//have them open in new tab
+									leak.setAttribute('target','_blank');
+									//push elements into leaksList div
+									document.getElementById('leaksList').appendChild(leak);
+		
+								};
+							};
+						};
+					}
+
+					
+
+				});
+
+				countryReq.send(null);
+
+				
+
+			}
+			//closeModal onclick
+			document.getElementById('closeModal').onclick = function(){
+				
+				document.getElementById('demo').style.display = "none";
+			};
+
+			document.getElementById('closelist').onclick = function(){
+				
+				document.getElementById('leaks').style.display = "none";
+			};
+			function addDataToMap(data, map) {
+				//assign geojson to data layer, L is an instance of the map
+			    var dataLayer = L.geoJson(data);
+			    //add geojson to map
+			    dataLayer.addTo(map);
+			    //on clicking each layer(countries) do something
+			    dataLayer.eachLayer(function (layer) {
+			    	//this creates the pop up here will the api come
+			    	//ADMIN is the name of the country according to geoJSON files
+				   var countryName = layer.feature.properties.ADMIN;
+				   layer.bindPopup('<a href=#leakslayer id="'+countryName +'" onclick="showModal(this)">'+ countryName +'</a>');
+				  
+
+				    // layer.bindPopup('<a href="http://www.google.com">Visit Google</a>"');
+				     
+				
+				});
+			}
+			
+		
+			// var geojson = L.geoJson(GeoJsonData, geoJsonOptions).addTo(map);
+			// geojson.eachLayer(function (layer) {
+			//     layer.bindPopup(layer.feature.properties.name);
+			// });
+
+			// map.fitBounds(geojson.getBounds());
+		
+
+
+		 </script>
+	</body>
+</html>
