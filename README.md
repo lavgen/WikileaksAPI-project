@@ -24,7 +24,7 @@ count= ‘number’ ex:count=15
 
 
 ###Example of What You Can Do With This API:###
-  [WikileaksData_Map](wiki.lalavgen.com).
+  [WikileaksData_Map](http://wiki.lalavgen.com).
 
 **If you only specify a country, you will get all data that all leakgroups have on a country**                
 **If you don't specify a leakgroup but only country and count, you will get that number of links from first leakgroup which is "Global Intelligence Files"**     
