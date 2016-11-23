@@ -5,7 +5,7 @@ var fs = require('fs');
 //iterator for countries in countryVar
 var count = 0;
 //4000 is port no
-mongoose.connect('mongodb://localhost:4000/WikileaksAPI');
+mongoose.connect('mongodb://localhost:5000/WikileaksAPI');
 var leakNames = [
     "Global Intelligence Files",
     "Plusd",
@@ -43,11 +43,12 @@ db.once('open',function(){
 });
 //get schema we created for countries as variable
 //use ./ to mean that it is a relative path!
-var countryTemplate = require('./schema');
+var exports = require('../models/schema.js');
+var countryTemplate = exports.template;
 //list of countries
 var countryVar = require('./../countries');
 //model from schema
-var Countries = mongoose.model("countries", countryTemplate); 
+var Countries = exports.model;
 
 //function to add countries to db
 function insertCountry(num){
@@ -63,7 +64,7 @@ function insertCountry(num){
 			country : countryVar[num] , 
 		};
 		//for loop to iterate through leak names array defined up top
-		leakNames.forEach ( function( leakname) {
+		leakNames.forEach ( function(leakname) {
 			//I am creating empty arrays for each leak group, bc leakname is number of leakgroups
 			//-next value inside leakNames array so val = leakNames[0],leakNames[1] etc..
 			objToDb[leakname] = [];
@@ -76,21 +77,9 @@ function insertCountry(num){
 				objToDb[leakname].push(leakobj);
 			};
 
-			// countriesReadable[leakname].forEach( function( leakobj, i ) {
-			// // //this loop goes through all the names&links inside each leak group
-			// val.name ;
-			// val.link;
-			// // console.log(val.name);
-			// //create an object to push to new array
-			// var newObj = {
-			// 	name: val.name,
-			// 	link: val.link
-			// }
-			// // 	//push obj to array
-			// 	objToDb[leakname].push(leakobj);
-			//  });
+			
 		});
-
+		//create instance of the exported model 
 		var country = new Countries(objToDb);
          //function in save is callback
 		country.save(function(err){

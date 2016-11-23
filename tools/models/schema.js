@@ -118,7 +118,7 @@ var countryTemplate = mongoose.Schema({
 			 link : String 
 		}
 	],
-	"Non Collection Publications": [
+	"Non-collection Publications": [
 		{
 			 name: String , 
 			 link : String 
@@ -128,4 +128,7 @@ var countryTemplate = mongoose.Schema({
       
 });
 //name of variable
-module.exports = mongoose.model('Countries',countryTemplate);
+
+exports.model = mongoose.model('Countries',countryTemplate);
+exports.template = countryTemplate;
+console.log(exports.model)
