@@ -55,3 +55,10 @@ There are 20 leak groups you can choose.
 20."Non-collection Publications"          
 
 
+###Attributions###
+
+geoJson file used on Example Website is taken from : https://github.com/datasets/geo-countries
+I am using [Leaflet library](http://leafletjs.com/) and [Open street Map](https://www.openstreetmap.org/#map=5/51.500/-0.100) for creating the map on Example Website.
+All data you can view is scraped from https://wikileaks.org/ 
+
+
