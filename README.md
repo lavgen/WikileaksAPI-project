@@ -5,18 +5,12 @@ This is the WikileaksAPI. You can query data Wikileaks has for countries. This d
 ##To Begin##
                    
 **You can't use this API without specifying a country.**               
-**If you only specify a country, you will get all data all leakgroups have on a country**                
-**If you don't specify a leakgroup but only country and count, you will get that number of links from first leakgroup which is "Global Intelligence Files"**     
-**If you don't specify count but a leakgroup, you will get back first 50 links by default**            
-to get all the data in a leakgroup write count=all (??)                  
-      
-
 
 **Specify a country name :**
 
 country= ‘country name’ ex: country=Turkey
 
-**Specify a leak group :**
+**Specify a leak group :**  (below the page are all leakgroups you can choose from)
 *If you don't specify a leakgroup you will get all the data from all leakgroups*
 
 leakgroup= ‘leakgroup name’ ex: leakgroup=Global Intelligence Files
@@ -30,10 +24,12 @@ count= ‘number’ ex:count=15
 
 
 ###Example of What You Can Do With This API:###
-  [WikileaksData_Map](www.wikileaksapi.com).
+  [WikileaksData_Map](wiki.lalavgen.com).
 
-
-
+**If you only specify a country, you will get all data that all leakgroups have on a country**                
+**If you don't specify a leakgroup but only country and count, you will get that number of links from first leakgroup which is "Global Intelligence Files"**     
+**If you don't specify count but a leakgroup, you will get back first all links by default**            
+              
 
 You can query all the data on one country, or specify the leakgroup that leaked the spesific files in a country. 
 There are 20 leak groups you can choose.       
@@ -57,6 +53,5 @@ There are 20 leak groups you can choose.
 18."DNC Email Archive",          
 19."Sony Emails",           
 20."Non-collection Publications"          
-<<<<<<< HEAD
-=======
+
 
