@@ -1,0 +1,148 @@
+
+	@font-face {
+	  font-family: 'Bentham';
+	  font-style: normal;
+	  src: url(font/bentham-webfont.woff) format('woff');
+	}
+	
+	#demo{
+		display: none;
+	    font-family: Arial;
+		text-align: center;
+		width: 22%;
+		height: 480px;
+		background: rgba(64 , 10 , 52 ,0.7);
+		padding: 0px;
+		margin-bottom: 8px;
+		cursor: pointer;
+		z-index: 10000;
+		top: 15% ;
+		position: absolute;
+	}
+
+	#demo a {
+		color: white;
+		font-family: 'Bentham';
+		font-size: 18px;
+	}
+
+	#demo a:hover {
+		color: #F2D5CF;
+	}
+
+	#leaks {
+
+	    position: absolute;
+	    width: 50%;
+	    height: 300px;
+	    /* margin-left: 24%; */
+	    overflow-y: scroll;
+	    top: 20%;
+	    left: 24%;
+	    z-index: 10000;
+	    background-color: rgba(121,83,112,0.9);
+	    display: none;
+	}
+
+	#leaks a{
+		color: white;
+	    padding-left: 9px;
+	    padding-right: 5px;
+	    word-wrap: break-word;
+	    margin-left: 5px;
+	    font-family: monospace;
+	    font-size: 16px;
+	    display: list-item;
+	}
+
+	#leaksList{
+		margin-top: 10px;
+	}
+	#leaklayer{
+		height: 80%;
+
+	}
+		
+		/*.leakslayer{
+			z-index: 10000;
+			position: absolute;
+			top: 5%;
+			width: 100%;
+			height: 500px;
+			overflow-y: scroll;
+			display: none;
+		
+		}
+*/
+	#mapid { 
+
+		height: 90vh;
+		top: 55px;
+		border: 0.5px solid;
+
+	}
+
+	.pswp__zoom-wrap {
+	  	will-change: auto !important;
+	  	-webkit-backface-visibility: visible !important;
+	}
+
+	ul.topnav {
+	    list-style-type: none;
+	    margin: 0;
+	    padding: 0;
+	    overflow: hidden;
+	    background: rgba(64 , 10 , 52 ,0.7);
+	}
+
+	/* Float the list items side by side */
+	ul.topnav li {
+		float: left;
+
+	}
+	ul.topnav{
+		position: fixed;
+		width: 100%;
+		z-index: 30000;
+	}
+	
+	/* Style the links inside the list items */
+	ul.topnav li a {
+		font-family:  'intro_inlineregular';
+	    display: inline-block;
+	    color: #f2f2f2;
+	    text-align: center;
+	    padding: 14px 16px;
+	    text-decoration: none;
+	    transition: 0.3s;
+	    font-size: 17px;
+
+	}
+	#about{
+		font-size: 2em;
+		font-family: monospace;
+		top: 110%;
+		margin-top: 25%;
+		width: 80%;
+		left: 10%;
+		position: relative;
+
+	}
+	#documentation{
+		font-family: monospace;
+		margin-top: 30%;
+		width: 80%;
+		margin-left: 10%;
+		margin-bottom: 20%;
+	}
+
+	#line{
+		margin-top: 10%;
+		margin-bottom: 10%;
+		border-bottom: 3.5px solid black;
+	}
+/* Change background color of links on hover */
+	ul.topnav li a:hover {background-color: black;}
+
+/*Hide the list item that contains the link that should open and close the topnav on small screens */
+	ul.topnav li.icon {display: none;}
