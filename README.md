@@ -1,11 +1,17 @@
 #DOCUMENTATION#
+This is a custom API for accessing all the leaks from wikileaks.org (as of 2016) . This API is unaffiliated with Wikileaks. It was created in order to easily query for url’s to leaks associated with different countries and leak groups. 
 
-This a custom build API that has all the leaks from wikileaks.org. This API is unaffiliated with Wikileaks. It was created in order to easily query different leakgroups' information on countries (ie. the files different leakgroups uploaded to Wikileaks) . 
 
- What makes this API spesific is that it approaches all leaks from a Country perspective. Rather than showing you everything out there about every country, you need to pick a country to access the leaks that are related to that country. By doing so, my aim is to bring caution to information overloading.
+My API requires that you specify a country. Each country consists of 20 leak groups and those leak groups consist of links and names. This is the key difference between the way wikileaks.org shares information and the way my API shares that same information. By funnelling the leaks through a set of filters my aim is to bring caution to information overload.
 
+> >"Information overload occurs when the amount of input to a system exceeds its processing capacity. Decision makers have fairly limited cognitive processing capacity. Consequently, when information overload occurs, it is likely that a reduction in decision quality will occur." - Alvin Toffler
+
+
+What does it mean today to have access to any(most) information and therefore not have access to the right parts? How do we scrape the true, right information?
+My aim with this API is different from wikileaks.org’s: I am not throwing potentially "catastrophic files" along with a bunch of unimportant files at you. Through a systematization we can query the information we need. I am giving you a tool to re-represent this information in a systematic way.
  My Api interface only works if the user has specified a country.
  Each country consists of 20 leakgroups and those leak groups consist links and names.   
+
 
 ##To Begin##
                    
