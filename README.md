@@ -1,6 +1,11 @@
 #DOCUMENTATION#
 
-This is the WikileaksAPI. You can query data Wikileaks has for countries. This data consists of links and name of the link divided according to the group that leaked that link. Each country consists of 20 leakgroups and those leak groups consist links and names.   
+This a custom build API that has all the leaks from wikileaks.org. This API is unaffiliated with Wikileaks. It was created in order to easily query different leakgroups' information on countries (ie. the files different leakgroups uploaded to Wikileaks) . 
+
+ What makes this API spesific is that it approaches all leaks from a Country perspective. Rather than showing you everything out there about every country, you need to pick a country to access the leaks that are related to that country. By doing so, my aim is to bring caution to information overloading.
+
+ My Api interface only works if the user has specified a country.
+ Each country consists of 20 leakgroups and those leak groups consist links and names.   
 
 ##To Begin##
                    
@@ -20,10 +25,10 @@ leakgroup= ‘leakgroup name’ ex: leakgroup=Global Intelligence Files
            
 count= ‘number’ ex:count=15
 
-**full example of all queries together: “ url/api?country=Turkey&leakgroup=Global Intelligence Files&count=20 ”**
+**full example of all queries together: “ wiki.lalavgen.com/api?country=Turkey&leakgroup=Global Intelligence Files&count=20 ”**
 
 
-###Example of What You Can Do With This API:###
+###Demo Application:###
   [WikileaksData_Map](http://wiki.lalavgen.com).
 
 **If you only specify a country, you will get all data that all leakgroups have on a country**                

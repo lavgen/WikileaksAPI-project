@@ -22,8 +22,8 @@ var leakNames = [
     "Sony Emails",
     "Non-collection Publications"
 ];
-//united states is in my file other one is united states of america
-console.log(leakNames.length);
+
+// console.log(leakNames.length);
 //loop through an array
 // for (var c in leakNames) {
 // 	//create new element a tag
@@ -73,6 +73,8 @@ console.log(leakNames.length);
 	req.open("GET","http://lalavgen.com:4000/geoJson" , true);
 	//once page loads do this
 	req.addEventListener("load", function(){
+		var loadText = document.getElementById('mapload');
+		loadText.style.display = "none";
 		var data = JSON.parse(req.responseText );
 		addDataToMap(data, map);
 
@@ -94,10 +96,8 @@ console.log(leakNames.length);
 		//we are doing this so every country name in geojson is same with country names in database
 		// assign rightName property of selected country as name when querying with api url
 		var correctName = nameDict[name].rightName ; 
-		console.log(correctName);
-		// if (a.getAttribute('id') == "United States of America" ) {
-		// 	name = "United States";
-		// };
+		// console.log(correctName);
+	
 		var demo = document.getElementById('demo');
 		// console.log(name);
 		demo.style.display = "block";
@@ -129,7 +129,7 @@ console.log(leakNames.length);
 						//get rid of what is inside list div
 						document.getElementById('leaksList').innerHTML = "";
 						
-						console.log(i , leakName);
+						// console.log(i , leakName);
 						for (var k = 0; k < data.leaks[leakName].length; k++) {
 							//deleted every [0] before [k]
 							//create a tag for name of links
@@ -161,6 +161,7 @@ console.log(leakNames.length);
 	document.getElementById('closeModal').onclick = function(){
 		
 		document.getElementById('demo').style.display = "none";
+		document.getElementById('leaks').style.display = "none";
 	};
 
 	document.getElementById('closelist').onclick = function(){

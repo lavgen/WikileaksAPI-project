@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<title>WikAPI Map</title>
 		<meta name="Author" content="Lal Avgen">
 		<meta name="Description" content="Example Website for Wikileaks Api use" >	
 		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 		<link rel="stylesheet" type="text/css" href="stylesheet/styles.css">
 		<link rel="stylesheet" href="js/leaflet/leaflet.css"/>
 		<link rel="stylesheet" href="font/Intro/stylesheet.css" />
-		<link rel="stylesheet" href="stylesheet/mapstylesheet.css" />
+		<link rel="stylesheet" href="mapstylesheet.css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		
 
@@ -24,24 +25,40 @@
 			<div id="leaklayer" style="color:white;">loading</div>
 		</div>
 		<div id="leaks">
-			<div id="closelist" style="background-color:white;text-align:center; margin-left:90%; margin-top:2%; width:20px;  ">&#10005;</div>
+			<div id="closelist" style="background-color:white;text-align:center; margin-left:45%; margin-top:2%; width:20px; position:fixed;  ">&#10005;</div>
 			<div id="leaksList" style="color:white;">loading</div>
 		</div>
-		<!-- <a style="display: none;"href= SOMEHREFDIRECTINGTOLEAK id="leakslayer"><br></a> -->
+		
+		<div id="mapload">Loading Layers</div>
 		 <div id="mapid"></div>
-		<div id="about"> <br><br><br><h1>ABOUT<br></h1>
-		<div style="margin-top:15%;">This website is an example for how to use the Wikileaks API. You can click on the countries on the map and select from a leakgroup from the list that appears. All links you see come from wikileaks and will take you to those spesific files. This is a custom build API that intends to allow easier access to wikileaks data. <br> <div style=" text-align:right; font-size:0.5em;">by Lal Avgen, Nov,1026</div></div>
+		<div id="about"> <br><h1>ABOUT<br></h1>
+		<div style="margin-top:4%;">
+			This a custom build API that has all the leaks from wikileaks.org.(as of 2016) This API is unaffiliated with Wikileaks. It was created in order to easily query different leakgroups' information on countries (ie. the files different leakgroups uploaded to Wikileaks). 
+			<Br><br>
+				My Api interface only works if the user has specified a country.
+		 	Each country consists of 20 leakgroups and those leak groups consist links and names. <br><br>
+		 	What makes this API different from the Wikileaks page is that it approaches all leaks from a Country first perspective. <Br> 
+		 	Rather than giving you everything out there about every country, you need to pick a country to access the leaks that are related to that country. By doing so, my aim is to bring caution to information overload<br> 
+			<br>
+			<span style="font-size:17px;"><i>"Information overload occurs when the amount of input to a system exceeds its processing capacity. Decision makers have fairly limited cognitive processing capacity. Consequently, when information overload occurs, it is likely that a reduction in decision quality will occur."</i> - Alvin Toffler<br>
+			<br>
+			What does it mean today to have all the access to any(most) information and therefore not have access to right one? How do we scrape the true, right information? <br> My approach to this API is differen't than wikileaks' aim: I am not throwing possible "catastrophic files" and bunch of unimportant files towards your way. <br>Through a systematization we can query the information we need. I am giving you a tool to explore information in a systematic way.
+			
+		 	</span>
+		 	  <div style=" text-align:right; font-size:0.5em;">by Lal Avgen, Nov,1026</div></div>
 		</div>
 		<div id="line"></div>
 		<div id="documentation">
 			<br><br><br><br><br> 
 			<h1>DOCUMENTATION</h1>
-			This is the WikileaksAPI. You can query the data Wikileaks has for countries. This data consists of links and name of the link divided according to the group that leaked that link. Each country consists of maximum 20 leakgroups and those leak groups consist links and names.
+				This website is a demo for use of the custom build WikileaksAPI.  
+				<br> You can click on the countries on the map and select from a leakgroup from the list that appears. All links you see come from wikileaks and will take you to those spesific files uploaded to the website. <br> 
+			
 			<h2>To Begin:</h2>
 			  <ul>
 			  	<li>
 			  	Specify a <b>country</b>, you can't use this API without choosing a country to query from!
-				how to access: http://localhost:4000/api?country=<i>name</i>
+				how to access: http://wiki.lalavgen.com/api?country=<i>name</i>
 				</li>
 				<li>
 					After choosing a country, 
@@ -53,7 +70,7 @@
 				</li>
 				<li>
 
-				<b>full example of all queries together: “ url/api?country=Turkey&leakgroup=Global Intelligence Files&count=20 ”	 </b>
+				<b>full example of all queries together: “ http://wiki.lalavgen.com/api?country=Turkey&leakgroup=Global Intelligence Files&count=20 ”	 </b>
 				</li>
 				<br><br>
 			  	<b>List Of Leakgroups to choose from: </b><br><br>
