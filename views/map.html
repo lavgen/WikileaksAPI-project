@@ -5,7 +5,6 @@
 		<meta name="Author" content="Lal Avgen">
 		<meta name="Description" content="Example Website for Wikileaks Api use" >	
 		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-		<link rel="stylesheet" type="text/css" href="stylesheet/styles.css">
 		<link rel="stylesheet" href="js/leaflet/leaflet.css"/>
 		<link rel="stylesheet" href="font/Intro/stylesheet.css" />
 		<link rel="stylesheet" href="mapstylesheet.css" />
@@ -96,13 +95,30 @@
 					<li>"Sony Emails",</li>
 					<li>"Non-collection Publications"</li>
 			  	</ol>
+			  	<br><br>
+			  	<a href="https://github.com/lavgen/WikileaksAPI-project">Github page of project</a>
 			</ul>
 
 		</div>
 		<script src="Dictionary/nameDict.js"></script> 
 		<script src="js/leaflet/leaflet.js"></script> 
-		<script src="js/jquery/jquery-3.1.1.min.js"></script> 
+		<script src="js/jquery/jquery-3.1.1.min.js"></script>
 		<script src="js/mapScript.js"></script> 
+		<script>
+		//check if browser is safari
+		var isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+		//if so alert the user
+		if (isSafari) alert("Currently Safari isn't working with some configurations. Please use Chrome, Firefox or Opera Browser for full functionality"); // Safari
+		
+		//check if device screen is smalll ie are they on mobile?
+		if (window.matchMedia("(max-width: 650px)").matches) {
+		  /* the viewport is at least 400 pixels wide */
+		 alert('For full interactivity of the map, please access from a computer.');
+		} else {
+		  /* the viewport is less than 400 pixels wide */
+		 
+		}
+		</script>
 		
 	</body>
 </html>

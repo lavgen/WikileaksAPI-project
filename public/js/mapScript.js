@@ -45,6 +45,9 @@ var leakNames = [
 	    minZoom: 2,
 	    zoom: 2
 	});
+
+
+	
  	L.tileLayer( 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
  	{attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 	 subdomains: ['a','b','c']
@@ -64,7 +67,7 @@ var leakNames = [
 	        pane: 'labels'
 	}).addTo(map);
 	map.scrollWheelZoom.disable();
-	
+
 
 
 	//request content of a file
