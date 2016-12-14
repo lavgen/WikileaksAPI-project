@@ -70,11 +70,36 @@
 		margin-left: 38%;
 		font-family: 'intro_inlineregular';
 		color: rgb(121,83,112);
+    	opacity: 1;
+	    animation-name: example;
+	    animation-duration: 7s;
+	    -webkit-animation-iteration-count: infinite; /* Safari 4.0 - 8.0 */
+    	animation-iteration-count: infinite;
+	}
+		/* Safari 4.0 - 8.0 */
+	@-webkit-keyframes example {
+	    0%   {opacity: 1;}
+	    10%   {opacity: 0.85;}
+	    25%  {opacity: 0.75;}
+	    50%  {opacity: 0.5;}
+	    75%  {opacity: 0.25;}
+	    100% {opacity: 0;}
+	}
+
+	/* Standard syntax */
+	@keyframes example {
+	    0%   {opacity: 1;}
+	    10%   {opacity: 0.85;}
+	    25%  {opacity: 0.75;}
+	    50%  {opacity: 0.5;}
+	    75%  {opacity: 0.25;}
+	    100% {opacity: 0;}
 	}
 	#mapid { 
 
 		height: 90vh;
-		top: 55px;
+		/*top was 55px*/
+		top: 95px;
 		border: 0.5px solid;
 
 	}

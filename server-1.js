@@ -2,6 +2,7 @@ var express = require('express');
 var server = express();
 var mongoose = require('mongoose');
 var fs = require('fs');
+var compression = require('compression');
 
 // connect this server to the mongod server
 // make sure u have the same port number that u used to launch mongod with
@@ -13,9 +14,12 @@ mongoose.connect('mongodb://localhost:5000/WikileaksAPI');
 server.engine('html', require('hogan-express'));
 server.set('views', __dirname + '/views'); // set the folder where the views ( ie. template files ) are in
 server.set('view engine', 'html'); 
-
+//compress files
+server.use(compression());
 // what's the default folder for any requests to static files
 server.use(express.static(__dirname+'/public'));
+// compress all responses
+
 //for CORS errors, we are adding these to our header to resolve conflict with security
 server.use(function(req, res, next){
 	res.header("Access-Control-Allow-Origin", "*");
@@ -26,9 +30,17 @@ server.use(function(req, res, next){
 // && create a page to respond back with
 server.get('/',function(req,res){
 	// res.sendFile('map.html');
-
 	res.render('map');
 });
+
+//this is what i tried for gzipping geoJson
+// server.get('/geoJson', function (req,res) {
+// 	req.url = __dirname+'/public/Country-Cord-data/countries.geojson';
+
+// 	res.send(req.url);
+  
+// });
+
 //we use get here to avoid CORS
 server.get('/geoJson',function(req,res){
 	// res.sendFile('index.html');
